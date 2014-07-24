@@ -1,4 +1,15 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngRoute']);
+
+myApp.config(function ($routeProvider) {
+    $routeProvider
+        .when('/view2',
+        {
+            controller: 'myController',
+            templateUrl: '../view2.html'
+        });
+        //.otherwise({ redirectTo: '' });
+});
+
 
 myApp.factory("fact",function(){
     var factory={};
@@ -27,14 +38,16 @@ myApp.factory("fact",function(){
 //    };
 
 
-myApp.controller('Mycontroller',function Mycontroller($scope,fact){
+myApp.controller('myController',function myController($scope,fact){
 
     $scope.person= fact.getData().list;
-    console.log($scope.person);
+    //console.log($scope.person);
+
     $scope.userData = '';
     $scope.passData= '';
     $scope.addUser = function () {
         $scope.person.push({user: $scope.userData, pass: $scope.passData});
+
     };
     });
 
